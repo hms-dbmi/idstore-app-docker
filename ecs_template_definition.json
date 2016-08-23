@@ -1,0 +1,17 @@
+{
+    "family": "UDN-DEV",
+    "containerDefinitions": [
+        {
+            "name": "upload-preprocessing-service",
+            "image": "dbmi/upload-preprocessing-service",
+            "cpu": 1,
+            "memory": 200,
+            "memoryReservation": 200,
+			"portMappings": [
+				{
+				  "containerPort": 8000,
+				  "hostPort": 8000
+				} ]
+        }
+    ]
+}
