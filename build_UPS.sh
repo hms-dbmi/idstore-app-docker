@@ -1,1 +1,1 @@
-docker build -t dbmi/upload-preprocessing-service ./
+docker build -t dbmi/upload-preprocessing-service-docker:latest ./
