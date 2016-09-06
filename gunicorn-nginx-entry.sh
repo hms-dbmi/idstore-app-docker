@@ -1,5 +1,11 @@
 #!/bin/bash
 
+echo $UPS_KEY | base64 -d >> /etc/nginx/ssl/UPS_KEY.key
+echo $UPS_CERT | base64 -d >> /etc/nginx/ssl/UPS_CERT.crt
+echo $UPS_CERT_CHAIN | base64 -d >> /etc/nginx/ssl/UPS_CERT.crt
+
+chmod 710 /etc/nginx/ssl/*
+
 cd /upload-preprocessing-service/upload-preprocessing-service/
 
 python manage.py migrate

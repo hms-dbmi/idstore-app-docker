@@ -12,6 +12,9 @@ RUN ln -s /etc/nginx/sites-available/ups.conf /etc/nginx/sites-enabled/ups.conf
 
 RUN rm -rf /etc/nginx/sites-available/default
 
+RUN mkdir /etc/nginx/ssl/
+RUN chmod 710 /etc/nginx/ssl/
+
 COPY gunicorn-nginx-entry.sh /
 
 RUN chmod u+x gunicorn-nginx-entry.sh
