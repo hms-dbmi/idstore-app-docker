@@ -1,13 +1,33 @@
-FROM python:3.4.5-wheezy
+FROM python:3.5
 
 RUN pip install django
+RUN pip install gunicorn
 
-RUN git clone -b development https://github.com/hms-dbmi/upload-preprocessing-service.git
+RUN	apt-get -y update && \
+ 	apt-get -y install nginx
 
-RUN pip install -r /upload-preprocessing-service/requirements.txt
+COPY ups.conf /etc/nginx/sites-available/
 
-RUN cd /upload-preprocessing-service/ && python manage.py migrate
+RUN ln -s /etc/nginx/sites-available/ups.conf /etc/nginx/sites-enabled/ups.conf
 
-WORKDIR /upload-preprocessing-service/
+RUN rm -rf /etc/nginx/sites-available/default
 
-CMD python manage.py runserver 0.0.0.0:8000
+RUN mkdir /etc/nginx/ssl/
+RUN chmod 710 /etc/nginx/ssl/
+
+COPY gunicorn-nginx-entry.sh /
+
+RUN chmod u+x gunicorn-nginx-entry.sh
+
+RUN mkdir /idstore-app/
+RUN mkdir /idstore-app/static/
+
+WORKDIR /idstore-app/
+
+RUN  echo "hi" && git clone -b development https://github.com/hms-dbmi/idstore-app.git
+
+RUN pip install -r /idstore-app/idstore-app/requirements.txt
+
+WORKDIR /
+
+ENTRYPOINT ["./gunicorn-nginx-entry.sh"]
