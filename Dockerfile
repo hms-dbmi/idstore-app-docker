@@ -19,14 +19,14 @@ COPY gunicorn-nginx-entry.sh /
 
 RUN chmod u+x gunicorn-nginx-entry.sh
 
-RUN mkdir /upload-preprocessing-service/
-RUN mkdir /upload-preprocessing-service/static/
+RUN mkdir /idstore-app/
+RUN mkdir /idstore-app/static/
 
-WORKDIR /upload-preprocessing-service/
+WORKDIR /idstore-app/
 
-RUN  echo "hi" && git clone -b development https://github.com/hms-dbmi/upload-preprocessing-service.git
+RUN  echo "hi" && git clone -b development https://github.com/hms-dbmi/idstore-app.git
 
-RUN pip install -r /upload-preprocessing-service/upload-preprocessing-service/requirements.txt
+RUN pip install -r /idstore-app/idstore-app/requirements.txt
 
 WORKDIR /
 

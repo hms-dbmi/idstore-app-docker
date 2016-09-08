@@ -6,13 +6,13 @@ echo $UPS_CERT_CHAIN | base64 -d >> /etc/nginx/ssl/UPS_CERT.crt
 
 chmod 710 /etc/nginx/ssl/*
 
-cd /upload-preprocessing-service/upload-preprocessing-service/
+cd /idstore-app/idstore-app/
 
 python manage.py migrate
 python manage.py collectstatic --no-input
 
 /etc/init.d/nginx restart
 
-gunicorn upload_preprocessing_service.wsgi:application
+gunicorn idstore-app.wsgi:application
 
 
