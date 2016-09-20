@@ -2,15 +2,15 @@
     "family": "UDN-DEV",
     "containerDefinitions": [
         {
-            "name": "upload-preprocessing-service",
-            "image": "dbmi/upload-preprocessing-service",
+            "name": "idstore-app",
+            "image": "dbmi/idstore-app-docker:development",
             "cpu": 1,
             "memory": 200,
             "memoryReservation": 200,
 			"portMappings": [
 				{
-				  "containerPort": 8000,
-				  "hostPort": 8000
+				  "containerPort": 443,
+				  "hostPort": 443
 				} ]
         }
     ]
