@@ -2,8 +2,6 @@
 
 #vault write -format json auth/app-id/login app_id=$APP_ID user_id=$USER_ID | jq -r .auth.client_token > /root/secretstash.txt
 
-echo $ONETIME_TOKEN
-
 export VAULT_ADDR=https://vault.aws.dbmi.hms.harvard.edu:443 
 export VAULT_SKIP_VERIFY=1
 

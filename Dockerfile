@@ -20,7 +20,7 @@ RUN mkdir /idstore-app/static/
 
 WORKDIR /idstore-app/
 
-RUN  echo "hi" && git clone -b development https://github.com/hms-dbmi/idstore-app.git
+RUN  git clone -b development https://github.com/hms-dbmi/idstore-app.git && echo "hi"
 
 RUN pip install -r /idstore-app/idstore-app/requirements.txt
 

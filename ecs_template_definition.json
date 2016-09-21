@@ -1,5 +1,5 @@
 {
-    "family": "UDN-DEV",
+    "family": "idstore-app",
     "containerDefinitions": [
         {
             "name": "idstore-app",
