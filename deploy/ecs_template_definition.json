@@ -11,7 +11,12 @@
 				{
 				  "containerPort": 443,
 				  "hostPort": 443
-				} ]
+				} ],
+			"environment" : [
+				{ "name" : "VAULT_ADDR", "value" : "https://vault.aws.dbmi.hms.harvard.edu:443" },
+				{ "name" : "VAULT_SKIP_VERIFY", "value" : "1" },
+				{ "name" : "VAULT_PATH", "value" : "secret/udn/idstore" }				
+			]				
         }
     ]
 }

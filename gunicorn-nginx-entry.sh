@@ -1,21 +1,16 @@
 #!/bin/bash
 
-#vault write -format json auth/app-id/login app_id=$APP_ID user_id=$USER_ID | jq -r .auth.client_token > /root/secretstash.txt
-
-export VAULT_ADDR=https://vault.aws.dbmi.hms.harvard.edu:443 
-export VAULT_SKIP_VERIFY=1
-
 /vault/vault auth $ONETIME_TOKEN
 
-DJANGO_SECRET=$(/vault/vault read -field=value secret/udn/udndev/ups_django_secret)
-UPS_MYSQL_USERNAME_VAULT=$(/vault/vault read -field=value secret/udn/udndev/ups_mysql_username)
-UPS_MYSQL_PASSWORD_VAULT=$(/vault/vault read -field=value secret/udn/udndev/ups_mysql_password)
-UPS_MYSQL_PORT_VAULT=$(/vault/vault read -field=value secret/udn/udndev/ups_mysql_port)
-UPS_MYSQL_HOSTNAME_VAULT=$(/vault/vault read -field=value secret/udn/udndev/ups_mysql_hostname)
+DJANGO_SECRET=$(/vault/vault read -field=value $VAULT_PATH/django_secret)
+UPS_MYSQL_USERNAME_VAULT=$(/vault/vault read -field=value $VAULT_PATH/mysql_username)
+UPS_MYSQL_PASSWORD_VAULT=$(/vault/vault read -field=value $VAULT_PATH/mysql_password)
+UPS_MYSQL_PORT_VAULT=$(/vault/vault read -field=value $VAULT_PATH/mysql_port)
+UPS_MYSQL_HOSTNAME_VAULT=$(/vault/vault read -field=value $VAULT_PATH/mysql_hostname)
 
-UPS_KEY=$(/vault/vault read -field=value secret/udn/udndev/ups_ssl_key)
-UPS_CERT=$(/vault/vault read -field=value secret/udn/udndev/ups_ssl_cert)
-UPS_CERT_CHAIN=$(/vault/vault read -field=value secret/udn/udndev/ups_ssl_cert_chain)
+UPS_KEY=$(/vault/vault read -field=value $VAULT_PATH/ssl_key)
+UPS_CERT=$(/vault/vault read -field=value $VAULT_PATH/ssl_cert)
+UPS_CERT_CHAIN=$(/vault/vault read -field=value $VAULT_PATH/ssl_cert_chain)
 
 export SECRET_KEY=$DJANGO_SECRET
 export UPS_MYSQL_USERNAME=$UPS_MYSQL_USERNAME_VAULT
