@@ -30,7 +30,7 @@ RUN chmod u+x /gunicorn-nginx-entry.sh
 RUN mkdir /idstore-app/
 RUN mkdir /idstore-app/static/
 WORKDIR /idstore-app/
-RUN  git clone -b development https://github.com/hms-dbmi/idstore-app.git && echo "hi"
+RUN  git clone -b master https://github.com/hms-dbmi/idstore-app.git && echo "hi1"
 RUN pip install -r /idstore-app/idstore-app/requirements.txt
 
 WORKDIR /
